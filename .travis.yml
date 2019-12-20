@@ -18,3 +18,15 @@ script:
   - xcodebuild -project MoltenVKPackaging.xcodeproj -scheme "MoltenVK Package"
   - xcodebuild -workspace Demos/Demos.xcworkspace -scheme "Cube-macOS"
 
+before_deploy:
+  - tar -cvzf moltenvk.tar.gz Package/Release
+
+deploy:
+  provider: releases
+  api_key:
+    secure: RS5c/ple4Pf9udf49ILVCinvoP/qTVNKfzGZcX9RHJLKbEh7Hzw+CCnQKws6X8pd0VOsEph89a5fupTYRYJpIRmIp6HiCf8VT2woFtHaDCbtCwnuZSrxFmYxyL9uB8AIV8thtpWFhX4+Y90SI0vUPAt9Hiv4MJqXN5nR+EQieEbH1fT9ZVVm/TpQk4SR51l89WLj8nZHcfk0ySC6ob9pwT2+WUsmp/5la2qeswAtsKqFdmmTpiVxGnW4FT+FgTbig0tN7BG4cN1amlvHjmtHxzb8mFVdjNDZtQsMT9HNknpZL0hTvb5qCp5dhG7G8uXT/FBiUqWY19d1Dvec9iHXw8RmZvyr6NYWcgOJJTzQQbH0wQmrrkCdJUpwa5W0DkMC7HGLpO3vrZ+kKGxhFXewHYoJNRkT87jJZaEuPIDmk7mC0LJHrWkkTNyQHufijpyg6X6/73GmXfXr/TDVzIfy4ewoZzRnr4JHB6Efk1ONNxRkIDQ2e6xDFAg7RjD5b3kGPFQKNRIlJ4Ib+D48/WcDxaTkM0pE8MZIaYZ96CyRf3e0pU8hD32FAoEf9Azyoehgy4WZgf1JbKaPOIN+UDe3PIZU5zQVz4CkeZg1y0gvhmeuqjfF+l9g4CrILXQeu2jJJmqR7y9gSMOVtIXgMJtG7Bzf/QR+HpXg+IZCRUtmFKU=
+  file: moltenvk.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+
