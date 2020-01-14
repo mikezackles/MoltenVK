@@ -19,11 +19,7 @@ script:
   - xcodebuild -workspace Demos/Demos.xcworkspace -scheme "Cube-macOS"
 
 before_deploy:
-  - mkdir -p artifacts/{iOS,macOS}
-  - cp Package/Release/MoltenVK/iOS/static/libMoltenVK.a artifacts/iOS
-  - cp Package/Release/MoltenVK/macOS/static/libMoltenVK.a artifacts/macOS
-  - cp -R Package/Release/MoltenVK/include artifacts
-  - tar -cvzf moltenvk.tar.gz artifacts
+  - tar -cvzf moltenvk.tar.gz Package/Release/MoltenVK
 
 deploy:
   provider: releases
